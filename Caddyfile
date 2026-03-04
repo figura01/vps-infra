@@ -1,0 +1,7 @@
+laurent-vuillaume.ovh {
+    reverse_proxy portfolio:3000
+}
+
+test-projet-1.laurent-vuillaume.ovh {
+    reverse_proxy test-projet-1:3000
+}

@@ -1,0 +1,30 @@
+services:
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - internal
+
+  portfolio:
+    image: ghcr.io/figura01/portfolio:latest
+    networks:
+      - internal
+
+  test-projet-1:
+    image: ghcr.io/figura01/test-projet-1:latest
+    networks:
+      - internal
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal:
+    driver: bridge
