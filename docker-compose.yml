@@ -1,23 +1,38 @@
+version: "3.9"
+
 services:
+
   caddy:
-    image: caddy:latest
+    image: caddy:${CADDY_VERSION}
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - ACME_EMAIL=${ACME_EMAIL}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    depends_on:
+      - portfolio
+      - test-projet-1
     networks:
       - internal
 
   portfolio:
-    image: ghcr.io/figura01/portfolio:latest
+    image: ${PORTFOLIO_IMAGE}
+    restart: unless-stopped
+    expose:
+      - "3000"
     networks:
       - internal
 
   test-projet-1:
-    image: ghcr.io/figura01/test-projet-1:latest
+    image: ${PROJECT1_IMAGE}
+    restart: unless-stopped
+    expose:
+      - "3000"
     networks:
       - internal
 
