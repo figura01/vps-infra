@@ -1,11 +1,13 @@
 {
-    email {$ACME_EMAIL}
+	email contact@laurent-vuillaume.ovh
 }
 
+# Portfolio = page principale
 laurent-vuillaume.ovh {
-    reverse_proxy portfolio:3000
+	reverse_proxy portfolio:3000
 }
 
+# Projet 1
 test-projet-1.laurent-vuillaume.ovh {
-    reverse_proxy test-projet-1:3000
+	reverse_proxy test-projet-1:3000
 }
